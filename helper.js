@@ -1,9 +1,14 @@
 const fs = require("fs");
+const crypto = require("crypto");
 const Blockchain = require("./blockchain");
 const Block = require("./block");
 const Transaction = require("./transaction");
 
 class Helper {
+
+    sha256Hash(data) {
+        return crypto.createHash("sha256").update(data).digest('hex');
+    } 
 
     save_chain(blockchain = new Blockchain()) {
         try {

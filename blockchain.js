@@ -10,7 +10,6 @@ class Blockchain {
     }
 
     add_block(block) {
-        console.log("\nNew block added to blockchain")
         this._blocks.push(block);
     }
 
@@ -19,16 +18,23 @@ class Blockchain {
     }
 
     get_recently_added_block() {
-        if(this.get_blocks_count() > 0) {
+        if (this.get_blocks_count() > 0) {
             return this._blocks.slice(-1).pop();
         }
         return null;
     }
 
     validate_chain() {
-
-        // TO-DO::Write logic to validate blocks that are added in the blockchain
-        
+        let blockChainValid = true;
+        for (let block of this._blocks) {
+            if (block.validate()) {
+                console.log(`\nBlock ${block._height} is valid`);
+            } else {
+                blockChainValid = false;
+                console.log(`\nBlock ${block._height} is invalid`);
+            }
+        }
+        return blockChainValid;
     }
 }
 

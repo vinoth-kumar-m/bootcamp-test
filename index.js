@@ -32,11 +32,9 @@ console.log("\nDict: ", person);
 
 // Creating hash for a string
 
-const sha256Hash = data => crypto.createHash("sha256").update(data).digest('hex');
+console.log("\nHash for 'Blockchain is simple': ", Helper.sha256Hash("Blockchain is simple"));
 
-console.log("\nHash for 'Blockchain is simple': ", sha256Hash("Blockchain is simple"));
-
-console.log("\nHash for 'Blockchain is Simple': ", sha256Hash("Blockchain is Simple"));
+console.log("\nHash for 'Blockchain is Simple': ", Helper.sha256Hash("Blockchain is Simple"));
 
 // Creating first block
 
@@ -68,7 +66,11 @@ console.log(`\nTransaction Count: ${block.get_transaction_count()}`);
 
 console.log(`\nValidate Block (Before Finalize): ${block.validate()}`);
 
-block.finalize();
+try {
+    block.finalize();
+} catch(err) {
+    console.log(err);
+}
 
 console.log(`\nValidate Block (After Finalize): ${block.validate()}`);
 
